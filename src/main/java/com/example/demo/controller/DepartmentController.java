@@ -53,7 +53,7 @@ public class DepartmentController {
 		return deptVo;		
 	}
 	
-	@Operation(summary = "獲取所有8列表", description = "返回所有部門數據")
+	@Operation(summary = "獲取所有部門列表", description = "返回所有部門數據")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "請求成功", content = {@Content(
 					mediaType = "application/json"
