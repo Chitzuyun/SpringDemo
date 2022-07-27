@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.entity.Department;
+import com.example.demo.model.entity.Employee;
 import com.example.demo.repository.DepartmentRepository;
 
 @Service
@@ -44,6 +47,10 @@ public class DepartmentService {
 		if(dept != null) {
 			dRepository.save(dept);
 		}
+	}
+	
+	public Page<Department> getAllPages(Pageable pageable){
+		return dRepository.findAll(pageable);
 	}
 	
 }

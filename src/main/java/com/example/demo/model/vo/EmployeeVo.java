@@ -35,9 +35,9 @@ public class EmployeeVo implements Serializable{
     @NotBlank(message = "請輸入雇用日期")
     private String hireDate;
     
-	@Schema(description = "薪水")
+	@Schema(description = "薪水", example = "2000")
     @NotNull
-    @DecimalMin(value = "25000")
+    @DecimalMin(value = "2000")
     private BigDecimal sal;
     
 	@Schema(description = "獎金")

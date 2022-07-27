@@ -34,8 +34,9 @@ public class Department implements Serializable{
 	 * 部門代號
 	 */
 	@Id
-	@SequenceGenerator(name = "deptSeq", sequenceName = "dept2_seq", allocationSize = 10,initialValue = 10)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "deptSeq")
+//	@SequenceGenerator(name = "deptSeq", sequenceName = "dept2_seq", allocationSize = 10,initialValue = 10)
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "deptSeq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer deptno;
 	
 	private String dname;

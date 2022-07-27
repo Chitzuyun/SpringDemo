@@ -1,37 +1,37 @@
 INSERT INTO dept(deptno, dname, loc)
-VALUES (dept2_seq.nextval, '財務部', '臺灣台北');
+VALUES (10, '財務部', '臺灣台北');
 INSERT INTO dept(deptno, dname, loc)
-VALUES (dept2_seq.nextval, '研發部', '臺灣新竹');
+VALUES (20, '研發部', '臺灣新竹');
 INSERT INTO dept(deptno, dname, loc)
-VALUES (dept2_seq.nextval, '業務部', '美國紐約');
+VALUES (30, '業務部', '美國紐約');
 INSERT INTO dept(deptno, dname, loc)
-VALUES (dept2_seq.nextval, '生管部', '日本東京');
+VALUES (40, '生管部', '日本東京');
 
 INSERT INTO emp(empno, ename, job, hiredate, sal, comm, deptno)
-VALUES (emp2_seq.nextval, 'king', 'president', to_date('1981-11-17', 'yyyy-MM-dd'), 5000.5, 0.0, 10);
+VALUES (1, 'king', 'president', '1981-11-17', 5000.5, 0.0, 10);
 INSERT INTO emp(empno, ename, job, hiredate, sal, comm, deptno)
-VALUES (emp2_seq.nextval, 'blake', 'manager', to_date('1981-05-01', 'yyyy-MM-dd'), 2850, 0.0, 30);
+VALUES (2, 'blake', 'manager', '1981-05-01', 2850, 0.0, 30);
 INSERT INTO emp(empno, ename, job, hiredate, sal, comm, deptno)
-VALUES (emp2_seq.nextval, 'clark', 'manager', to_date('1981-01-09', 'yyyy-MM-dd'), 2450, 0.0, 10);
+VALUES (3, 'clark', 'manager', '1981-01-09', 2450, 0.0, 10);
 INSERT INTO emp(empno, ename, job, hiredate, sal, comm, deptno)
-VALUES (emp2_seq.nextval, 'jones', 'manager', to_date('1981-04-02', 'yyyy-MM-dd'), 2975, 0.0, 20);
+VALUES (4, 'jones', 'manager', '1981-04-02', 2975, 0.0, 20);
 INSERT INTO emp(empno, ename, job, hiredate, sal, comm, deptno)
-VALUES (emp2_seq.nextval, 'martin', 'salesman', to_date('1981-09-28', 'yyyy-MM-dd'), 1250, 1400, 30);
+VALUES (5, 'martin', 'salesman', '1981-09-28', 1250, 1400, 30);
 INSERT INTO emp(empno, ename, job, hiredate, sal, comm, deptno)
-VALUES (emp2_seq.nextval, 'allen', 'salesman', to_date('1981-02-2', 'yyyy-MM-dd'), 1600, 300, 30);
+VALUES (6, 'allen', 'salesman', '1981-02-2', 1600, 300, 30);
 INSERT INTO emp(empno, ename, job, hiredate, sal, comm, deptno)
-VALUES (emp2_seq.nextval, 'turner', 'salesman', to_date('1981-09-28', 'yyyy-MM-dd'), 1500, 0, 30);
+VALUES (7, 'turner', 'salesman', '1981-09-28', 1500, 0, 30);
 INSERT INTO emp(empno, ename, job, hiredate, sal, comm, deptno)
-VALUES (emp2_seq.nextval, 'james', 'clerk', to_date('1981-12-03', 'yyyy-MM-dd'), 950, 0.0, 30);
+VALUES (8, 'james', 'clerk', '1981-12-03', 950, 0.0, 30);
 INSERT INTO emp(empno, ename, job, hiredate, sal, comm, deptno)
-VALUES (emp2_seq.nextval, 'ward', 'salesman', to_date('1981-02-22', 'yyyy-MM-dd'), 1250, 500, 30);
+VALUES (9, 'ward', 'salesman', '1981-02-22', 1250, 500, 30);
 INSERT INTO emp(empno, ename, job, hiredate, sal, comm, deptno)
-VALUES (emp2_seq.nextval, 'ford', 'analyst', to_date('1981-12-03', 'yyyy-MM-dd'), 3000, 0.0, 20);
+VALUES (10, 'ford', 'analyst', '1981-12-03', 3000, 0.0, 20);
 INSERT INTO emp(empno, ename, job, hiredate, sal, comm, deptno)
-VALUES (emp2_seq.nextval, 'smith', 'clerk', to_date('1980-12-17', 'yyyy-MM-dd'), 800, 0.0, 20);
+VALUES (11, 'smith', 'clerk', '1980-12-17', 800, 0.0, 20);
 INSERT INTO emp(empno, ename, job, hiredate, sal, comm, deptno)
-VALUES (emp2_seq.nextval, 'scott', 'analyst', to_date('1981-12-09', 'yyyy-MM-dd'), 3000, 0.0, 20);
+VALUES (12, 'scott', 'analyst', '1981-12-09', 3000, 0.0, 20);
 INSERT INTO emp(empno, ename, job, hiredate, sal, comm, deptno)
-VALUES (emp2_seq.nextval, 'adams', 'clerk', to_date('1983-01-12', 'yyyy-MM-dd'), 1100, 0.0, 20);
+VALUES (13, 'adams', 'clerk', '1983-01-12', 1100, 0.0, 20);
 INSERT INTO emp(empno, ename, job, hiredate, sal, comm, deptno)
-VALUES (emp2_seq.nextval, 'miller', 'clerk', to_date('1982-01-23', 'yyyy-MM-dd'), 1300, 0.0, 10);
+VALUES (14, 'miller', 'clerk', '1982-01-23', 1300, 0.0, 10);

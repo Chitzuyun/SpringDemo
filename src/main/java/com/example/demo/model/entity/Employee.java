@@ -37,12 +37,13 @@ public class Employee implements Serializable{
 	 * 員工代號
 	 */
 	@Id
-	@SequenceGenerator(
-		    name = "empSeq",
-		    sequenceName = "emp2_seq",
-		    allocationSize = 1,
-		    initialValue = 7015)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empSeq")
+//	@SequenceGenerator(
+//		    name = "empSeq",
+//		    sequenceName = "emp2_seq",
+//		    allocationSize = 1,
+//		    initialValue = 7015)
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empSeq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer empno;
 	
 	private String ename;

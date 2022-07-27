@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +52,10 @@ public class EmployeeService {
 
 	public Page<Employee> getAllPages(Pageable pageable){
 		return eRepository.findAll(pageable);
+	}
+	
+	public Page<Employee> getJobAndSalPages(String job, BigDecimal sal, Pageable pageable){
+		return eRepository.findByJobAndSalGreaterThan(job, sal, pageable);
 	}
 	
 }

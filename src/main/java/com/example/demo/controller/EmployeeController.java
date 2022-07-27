@@ -13,8 +13,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -31,6 +31,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.exception.ServiceException;
 import com.example.demo.model.entity.Department;
 import com.example.demo.model.entity.Employee;
+import com.example.demo.model.param.JobAndSalParam;
+import com.example.demo.model.param.PageParam;
 import com.example.demo.model.vo.DepartmentVo;
 import com.example.demo.model.vo.EmployeeVo;
 import com.example.demo.service.EmployeeService;
@@ -83,14 +85,102 @@ public class EmployeeController {
 		return empVos;		
 	}
 	
+//	@Operation(summary = "獲取所有員工列表並分頁")
+//	@GetMapping("/readAllPage")
+//	public Page<EmployeeVo> readAllPage(@Parameter(description = "查詢開始頁數", example = "0", required = true) @RequestParam(value = "pageNum", defaultValue = "0") int pageNum,
+//			@Parameter(description = "每頁期望筆數", example = "5", required = true) @RequestParam(value = "pageSize", defaultValue = "5") int pageSize) {		
+//		
+//		Page<EmployeeVo> empVos = eService.getAllPages(PageRequest.of(pageNum, pageSize)).map(this::transformEmpVo);
+//		
+//		for (int i = 0; i < empVos.getContent().size(); i++) {			
+//			System.out.println(empVos.getContent().get(i));
+//			System.out.println(empVos.getTotalElements());
+//		}
+//		return empVos;		
+//	}
+	
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "請求成功", content = {@Content(
+					mediaType = "application/json"
+					)}),
+			@ApiResponse(responseCode = "500", description = "INTERNAL_SERVER_ERROR", content = @Content)
+	})
 	@Operation(summary = "獲取所有員工列表並分頁")
 	@GetMapping("/readAllPage")
-	public Page<EmployeeVo> readAllPage(@Parameter(description = "查詢開始頁數", example = "0", required = true) @RequestParam(value = "pageNum", defaultValue = "0") int pageNum,
-			@Parameter(description = "每頁期望筆數", example = "5", required = true) @RequestParam(value = "pageSize", defaultValue = "5") int pageSize) {
-		Page<EmployeeVo> empVos = eService.getAllPages(PageRequest.of(pageNum, pageSize)).map(this::transformEmpVo);		
+	public Page<EmployeeVo> readAllPage(@Valid @RequestBody final PageParam pageParam) {			
+		Page<EmployeeVo> empVos = eService.getAllPages(PageParam.of(pageParam)).map(this::transformEmpVo);
+		
+		for (int i = 0; i < empVos.getContent().size(); i++) {			
+			System.out.println(empVos.getContent().get(i));
+			System.out.println(empVos.getTotalElements());
+		}
 		return empVos;		
 	}
 	
+//	@Operation(summary = "獲取員工列表依薪水排序分頁")
+//	@GetMapping("/readAllPageSort")
+//	public Page<EmployeeVo> readAllPageSort(@Parameter(description = "查詢開始頁數", example = "0", required = true) @RequestParam(value = "pageNum", defaultValue = "0") int pageNum,
+//			@Parameter(description = "每頁期望筆數", example = "5", required = true) @RequestParam(value = "pageSize", defaultValue = "5") int pageSize) {
+//		
+//		Sort sort = Sort.by(Sort.Direction.DESC, "sal");
+//		
+//		Page<EmployeeVo> empVos = eService.getAllPages(PageRequest.of(pageNum, pageSize, sort)).map(this::transformEmpVo);
+//		
+//		for (int i = 0; i < empVos.getContent().size(); i++) {			
+//			System.out.println(empVos.getContent().get(i));
+//			System.out.println(empVos.getTotalElements());
+//		}
+//		return empVos;		
+//	}
+	
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "請求成功", content = {@Content(
+					mediaType = "application/json"
+					)}),
+			@ApiResponse(responseCode = "500", description = "INTERNAL_SERVER_ERROR", content = @Content)
+	})
+	@Operation(summary = "獲取員工列表依薪水排序分頁")
+	@GetMapping("/readAllPageSort")
+	public Page<EmployeeVo> readAllPageSort(@Valid @RequestBody final PageParam pageParam) {		
+		Sort sort = Sort.by(Sort.Direction.DESC, "sal");
+		
+		Page<EmployeeVo> empVos = eService.getAllPages(PageParam.sort(pageParam, sort)).map(this::transformEmpVo);
+		
+		for (int i = 0; i < empVos.getContent().size(); i++) {			
+			System.out.println(empVos.getContent().get(i));
+			System.out.println(empVos.getTotalElements());
+		}
+		return empVos;		
+	}
+	
+	
+//	@Operation(summary = "依職業及薪水複合查詢並分頁")
+//	@GetMapping("/readJobAndSalPage")
+//	public Page<EmployeeVo> readJobAndSalPage(@Parameter(description = "職業", example = "manager", required = true) @RequestParam(value = "job", defaultValue = "manager") String job,
+//			@Parameter(description = "薪水", example = "2000", required = true) @RequestParam(value = "sal", defaultValue = "2000") BigDecimal sal,
+//			@Parameter(description = "查詢開始頁數", example = "0", required = true) @RequestParam(value = "pageNum", defaultValue = "0") int pageNum,
+//			@Parameter(description = "每頁期望筆數", example = "5", required = true) @RequestParam(value = "pageSize", defaultValue = "5") int pageSize) {		
+//		
+//		Page<EmployeeVo> empVos = eService.getJobAndSalPages(job, sal, PageRequest.of(pageNum, pageSize)).map(this::transformEmpVo);
+//		
+//		for (int i = 0; i < empVos.getContent().size(); i++) {			
+//			System.out.println(empVos.getContent().get(i));
+//			System.out.println(empVos.getTotalElements());
+//		}
+//		return empVos;		
+//	}
+	
+	@Operation(summary = "依職業及薪水複合查詢並分頁")
+	@GetMapping("/readJobAndSalPage")
+	public Page<EmployeeVo> readJobAndSalPage(@Valid @RequestBody final JobAndSalParam param) {		
+		Page<EmployeeVo> empVos = eService.getJobAndSalPages(param.getJob(), param.getSal(), PageParam.of(param.getPageParam())).map(this::transformEmpVo);
+		
+		for (int i = 0; i < empVos.getContent().size(); i++) {			
+			System.out.println(empVos.getContent().get(i));
+			System.out.println(empVos.getTotalElements());
+		}
+		return empVos;		
+	}
 	
 	@Operation(summary = "刪除指定員工編號資訊")
 	@DeleteMapping("/delete/{id}")

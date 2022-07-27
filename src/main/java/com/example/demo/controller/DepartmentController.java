@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.exception.ServiceException;
 import com.example.demo.model.entity.Department;
 import com.example.demo.model.entity.Employee;
+import com.example.demo.model.param.PageParam;
 import com.example.demo.model.vo.DepartmentVo;
 import com.example.demo.model.vo.EmployeeVo;
 import com.example.demo.service.DepartmentService;
@@ -64,6 +66,19 @@ public class DepartmentController {
 	public List<DepartmentVo> readAll() throws Exception {		
 		List<Department> result = dService.readAll();
 		List<DepartmentVo> deptVos = this.transformDeptVos(result);
+		return deptVos;		
+	}
+	
+	@Operation(summary = "獲取所有部門列表並分頁")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "請求成功", content = {@Content(
+					mediaType = "application/json"
+					)}),
+			@ApiResponse(responseCode = "500", description = "INTERNAL_SERVER_ERROR", content = @Content)
+	})
+	@GetMapping("/readAllPage")
+	public Page<DepartmentVo> readAllPage(@Valid @RequestBody final PageParam pageParam){		
+		Page<DepartmentVo> deptVos = dService.getAllPages(PageParam.of(pageParam)).map(this::transformDeptVo);
 		return deptVos;		
 	}
 	
