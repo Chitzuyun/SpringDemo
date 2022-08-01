@@ -74,9 +74,8 @@ public class DepartmentController {
 			@ApiResponse(responseCode = "200", description = "請求成功", content = {@Content(
 					mediaType = "application/json"
 					)}),
-			@ApiResponse(responseCode = "500", description = "INTERNAL_SERVER_ERROR", content = @Content)
 	})
-	@GetMapping("/readAllPage")
+	@PostMapping("/readAllPage")
 	public Page<DepartmentVo> readAllPage(@Valid @RequestBody final PageParam pageParam){		
 		Page<DepartmentVo> deptVos = dService.getAllPages(PageParam.of(pageParam)).map(this::transformDeptVo);
 		return deptVos;		

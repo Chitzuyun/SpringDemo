@@ -12,7 +12,6 @@ import javax.validation.Valid;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
@@ -25,7 +24,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.exception.ServiceException;
@@ -106,7 +104,7 @@ public class EmployeeController {
 			@ApiResponse(responseCode = "500", description = "INTERNAL_SERVER_ERROR", content = @Content)
 	})
 	@Operation(summary = "獲取所有員工列表並分頁")
-	@GetMapping("/readAllPage")
+	@PostMapping("/readAllPage")
 	public Page<EmployeeVo> readAllPage(@Valid @RequestBody final PageParam pageParam) {			
 		Page<EmployeeVo> empVos = eService.getAllPages(PageParam.of(pageParam)).map(this::transformEmpVo);
 		
@@ -140,7 +138,7 @@ public class EmployeeController {
 			@ApiResponse(responseCode = "500", description = "INTERNAL_SERVER_ERROR", content = @Content)
 	})
 	@Operation(summary = "獲取員工列表依薪水排序分頁")
-	@GetMapping("/readAllPageSort")
+	@PostMapping("/readAllPageSort")
 	public Page<EmployeeVo> readAllPageSort(@Valid @RequestBody final PageParam pageParam) {		
 		Sort sort = Sort.by(Sort.Direction.DESC, "sal");
 		
@@ -171,7 +169,7 @@ public class EmployeeController {
 //	}
 	
 	@Operation(summary = "依職業及薪水複合查詢並分頁")
-	@GetMapping("/readJobAndSalPage")
+	@PostMapping("/readJobAndSalPage")
 	public Page<EmployeeVo> readJobAndSalPage(@Valid @RequestBody final JobAndSalParam param) {		
 		Page<EmployeeVo> empVos = eService.getJobAndSalPages(param.getJob(), param.getSal(), PageParam.of(param.getPageParam())).map(this::transformEmpVo);
 		
